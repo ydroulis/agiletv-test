@@ -34,7 +34,7 @@ const Header: React.FC = () => {
             )}
             <div className="header__menu__container">
                 <CgMenuGridO className="header__menu__icon" color="#6F7377" />
-                <Image className="header__image" src="https://mydroulisblog.netlify.app/static/b389d73a03e35639326ddbd72f2a26c4/73c85/eu.png" alt="Image profile" width={50} height={50} />
+                <Image className="header__image" src="https://mydroulisblog.netlify.app/static/b389d73a03e35639326ddbd72f2a26c4/73c85/eu.png" alt="Image profile" width={35} height={35} />
             </div>
 
         </header >
