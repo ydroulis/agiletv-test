@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${openSans.variable}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
