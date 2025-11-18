@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Agile Content Frontend Test
 
-## Getting Started
+A fully accessible, responsive, and test‑driven React/Next.js application built as part of the Agile Content Frontend Technical Challenge.  
+The project implements search, preview panels, global state management, accessibility best‑practices, performance optimizations, and complete automated testing using Jest + React Testing Library.
 
-First, run the development server:
+---
+
+## 📌 Features
+
+### 🔍 Search System
+- Dynamic search with results page.
+- Deep link via URL query param (`/results?search=term`).
+- Includes validation and empty‑state/error messaging.
+
+### 🐾 Results & Preview
+- Displays animal data with a split layout (list + preview section).
+- Accessible modal preview with:
+  - **Focus‑trap**
+  - **Escape key closing**
+  - **Overlay interaction**
+  - **Screen reader‑friendly roles/labels**
+- Responsive behavior for desktop and mobile.
+
+### 🧠 Global State (Zustand)
+State is shared across components via:
+- `useAnimalStore` → animals, selected item, UI flags  
+- `useSearchStore` → search term
+
+### ⚙️ Custom Hooks
+- `useSearch()` abstracts fetch logic, error handling, and loading UI.
+
+### 🧪 Full Test Coverage
+Every component includes unit tests:
+- Jest + React Testing Library  
+- Mocks for:
+  - Next.js navigation (`useRouter`, `useSearchParams`)
+  - Zustand store behavior
+  - Next/Image replacement
+- Tests include:
+  - Rendering
+  - Interactions (click, typing)
+  - Accessibility assertions
+  - Edge cases (empty state, invalid term, loading)
+
+---
+
+## 🚀 Tech Stack
+
+- **Next.js 16 (App Router)**
+- **React 19**
+- **Zustand** (global store)
+- **Jest + React Testing Library**
+- **TypeScript**
+- **CSS Modules**
+- **React Icons**
+
+---
+
+## 📂 Project Structure
+
+```
+/
+├── src/
+│   ├── components/
+│   │   ├── Header/
+│   │   ├── Search/
+│   │   ├── ResultsSection/
+│   │   ├── ResultItem/
+│   │   ├── Preview/
+│   │   ├── Skeleton/
+│   │   └── Button/
+│   ├── store/
+│   ├── hooks/
+│   ├── types/
+│   └── app/
+└── tests/
+```
+
+---
+
+## 🛠️ Installation & Setup
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/ydroulis/agiletv-test
+cd agiletv-test
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Running Tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run test
+```
 
-## Learn More
+Run with coverage:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run test:coverage
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ Build for Production
 
-## Deploy on Vercel
+```bash
+npm run build
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
