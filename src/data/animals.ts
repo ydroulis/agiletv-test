@@ -14,6 +14,8 @@ const getAnimalName = (type: string): string => {
         'horse': () => faker.animal.horse(),
         'insect': () => faker.animal.insect(),
         'bird': () => faker.animal.bird(),
+        'fish': () => faker.animal.fish(),
+        'rodent': () => faker.animal.rodent(),
     }
 
     const method = animalMethods[type.toLowerCase()]
@@ -27,7 +29,7 @@ const getAnimalName = (type: string): string => {
 export const getAnimals = async () => {
     await new Promise((res) => setTimeout(res, 800))
 
-    const data = Array.from({ length: 100 }).map((_, index) => {
+    const data = Array.from({ length: 500 }).map((_, index) => {
         const type = faker.animal.type()
         return {
             id: index + 1,

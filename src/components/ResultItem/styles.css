@@ -1,0 +1,41 @@
+.result__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0;
+    position: relative;
+    width: 100%;
+}
+
+.result__link {
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    transition: all 0.2s ease-in-out;
+
+   &:hover {
+        text-decoration: underline;
+        text-decoration-color: #383FE3;
+    }
+}
+
+.result__url {
+    font-size: 12px;
+    color: #5a5a5a;
+    font-weight: 400;
+}
+
+.result__title {
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #383FE3;
+}
+
+.result__description {
+    font-size: 14px;
+    color: #5a5a5a;
+    font-weight: 400;
+}

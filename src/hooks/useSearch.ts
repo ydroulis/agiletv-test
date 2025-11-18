@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { getAnimals } from '@/data/animals'
-import { Animal } from '@/types/animal'
+import { useAnimalStore } from '@/store/useAnimalStore'
 
 export const useSearch = () => {
-    const [results, setResults] = useState<Animal[]>([])
+    const { setAnimals } = useAnimalStore()
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<{ status: 'empty' | 'invalid' | null; message: string | null } | null>({
+        status: null,
+        message: null,
+    })
 
     const search = async (term: string) => {
         setLoading(true)
@@ -13,8 +16,11 @@ export const useSearch = () => {
         try {
             const animals = await getAnimals()
             if (!term) {
-                setError('Digite um termo para buscar.')
-                setResults([])
+                setError({
+                    status: 'empty',
+                    message: 'Try looking for something.',
+                })
+                setAnimals([])
                 return []
             }
 
@@ -25,15 +31,18 @@ export const useSearch = () => {
             )
 
             if (filtered.length === 0) {
-                setError('Nenhum resultado encontrado.')
+                setError({
+                    status: 'invalid',
+                    message: 'Try looking for something else.',
+                })
             }
 
-            setResults(filtered)
+            setAnimals(filtered)
             return filtered
         } finally {
             setLoading(false)
         }
     }
 
-    return { results, loading, error, search }
+    return { loading, error, search }
 }

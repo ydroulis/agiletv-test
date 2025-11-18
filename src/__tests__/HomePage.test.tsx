@@ -1,24 +1,24 @@
-import { render, screen, fireEvent } from '@testing-library/react'
-import HomePage from '../app/page'
-import { useRouter } from 'next/navigation'
+import { render, screen } from '@testing-library/react';
+import HomePage from '../app/page';
 
-jest.mock('next/navigation', () => ({
-    useRouter: jest.fn(),
-}))
+jest.mock('@/components/SearchSection', () => {
+    const MockSearchSection = () => <div data-testid="search-section">Search Section</div>;
+    MockSearchSection.displayName = 'MockSearchSection';
+    return MockSearchSection;
+});
 
 describe('HomePage', () => {
-    it('renderiza o input de busca e envia corretamente', () => {
-        const push = jest.fn()
-            ; (useRouter as jest.Mock).mockReturnValue({ push })
+    it('should render the main element', () => {
+        render(<HomePage />);
 
-        render(<HomePage />)
+        const main = screen.getByRole('main');
+        expect(main).toBeInTheDocument();
+    });
 
-        const input = screen.getByPlaceholderText(/buscar animais/i)
-        const button = screen.getByText(/buscar/i)
+    it('should render the SearchSection', () => {
+        render(<HomePage />);
 
-        fireEvent.change(input, { target: { value: 'dog' } })
-        fireEvent.click(button)
-
-        expect(push).toHaveBeenCalledWith('/results?search=dog')
-    })
-})
+        const section = screen.getByTestId('search-section');
+        expect(section).toBeInTheDocument();
+    });
+});

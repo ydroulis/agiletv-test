@@ -1,22 +1,18 @@
 'use client'
 
-import { useAnimalStore } from '@/store/useAnimalStore';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SearchInput from '../Input';
 import Button from '../../Button';
-
+import { useAnimalStore } from '@/store/useAnimalStore';
+import { useSearchStore } from '@/store/useSearchStore';
 import './styles.css';
 
 const Form: React.FC = () => {
-    const { setIsShowingResults } = useAnimalStore()
+    const { isShowingResults } = useAnimalStore()
+    const { term, setTerm } = useSearchStore()
 
     const router = useRouter()
-    const [term, setTerm] = useState('')
-
-    useEffect(() => {
-        setIsShowingResults(false)
-    }, [])
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -24,9 +20,14 @@ const Form: React.FC = () => {
     }
 
     return (
-        <form className="search__form" onSubmit={handleSubmit}>
+        <form
+            className="search__form"
+            onSubmit={handleSubmit}
+            role="search"
+            aria-label="Animals search form"
+        >
             <SearchInput term={term} setTerm={setTerm} />
-            <Button type="submit" />
+            {!isShowingResults && <Button type="submit" ariaLabel='Search'>Buscar</Button>}
         </form>
     );
 }

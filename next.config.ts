@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'mydroulisblog.netlify.app',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'loremflickr.com',
+        pathname: '/**',
+      },
     ],
   },
 };

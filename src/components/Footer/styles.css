@@ -1,5 +1,5 @@
 .footer {
-    background-color: #f3f3f3;
+    background-color: #eeeeee;
     padding: 8px 16px;
     display: flex;
     justify-content: space-between;
@@ -7,6 +7,8 @@
     color: #6F7377;
 
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
+
+    font-size: 14px;
 }

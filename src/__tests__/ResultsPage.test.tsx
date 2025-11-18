@@ -1,32 +1,27 @@
-import { render, screen } from '@testing-library/react'
-import ResultsPage from '../app/results/page'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import ResultsPage from '../app/results/page';
 
-jest.mock('next/navigation', () => ({
-    useSearchParams: () => ({
-        get: () => 'cat',
-    }),
-}))
-
-jest.mock('@/data/animals', () => ({
-    getAnimals: jest.fn(),
-}))
-
-jest.mock('@/hooks/useSearch', () => ({
-    useSearch: jest.fn(),
-}))
-
-import { useSearch } from '@/hooks/useSearch'
+jest.mock('@/components/ResultsSection', () => {
+    const MockResultsSection = () => (
+        <div data-testid="results-section">Mock Results Section</div>
+    );
+    MockResultsSection.displayName = 'MockResultsSection';
+    return MockResultsSection;
+});
 
 describe('ResultsPage', () => {
-    it('mostra mensagem de carregando', () => {
-        (useSearch as jest.Mock).mockReturnValue({
-            results: [],
-            loading: true,
-            error: null,
-            search: jest.fn(),
-        })
+    it('should render the main element', () => {
+        render(<ResultsPage />);
 
-        render(<ResultsPage />)
-        expect(screen.getByText(/carregando/i)).toBeInTheDocument()
-    })
-})
+        const main = screen.getByRole('main');
+        expect(main).toBeInTheDocument();
+    });
+
+    it('should render the ResultsSection', () => {
+        render(<ResultsPage />);
+
+        const results = screen.getByTestId('results-section');
+        expect(results).toBeInTheDocument();
+    });
+});
