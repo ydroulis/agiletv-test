@@ -4,6 +4,11 @@ A fully accessible, responsive, and test‑driven React/Next.js application buil
 The project implements search, preview panels, global state management, accessibility best‑practices, performance optimizations, and complete automated testing using Jest + React Testing Library.
 
 ---
+# ✨ Try on production enviroment
+
+https://agiletv-test.vercel.app/
+
+---
 
 ## 📌 Features
 
